@@ -1,0 +1,67 @@
+.login {
+  width: 400px;
+  background: #fff;
+  border: 1px solid #dddfe2;
+  box-shadow: 0 2px 4px rgb(0 0 10 / 64%), 0 8px 16px rgb(0 10 0 / 34%);
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.login > form input {
+  border-radius: 20px;
+  border: 2px solid lightgrey;
+  outline: none;
+  color: #1d2129;
+  margin: 2% 0;
+  width: 90%;
+  padding: 12px;
+  font-size: 16px;
+}
+.preloader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.preloader__content {
+  text-align: center;
+}
+
+.cart {
+  width: 128px;
+  height: 128px;
+}
+
+.cart__track,
+.cart__lines {
+  fill: none;
+  stroke-width: 8;
+}
+
+.cart__track {
+  stroke: hsla(0, 10%, 10%, 0.1);
+}
+
+.cart__lines {
+  stroke: currentColor;
+}
+
+.cart__top {
+  stroke-dasharray: 338;
+  stroke-dashoffset: -338;
+}
+
+.cart__wheel-stroke {
+  stroke-dasharray: 81.68;
+  stroke-dashoffset: 81.68;
+}
+
+.preloader__msg {
+  margin: 10px 0;
+}

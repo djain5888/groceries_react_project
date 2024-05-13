@@ -1,0 +1,108 @@
+/* TitleBar.module.css */
+.title-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #333;
+  color: #fff;
+  padding: 1rem;
+  z-index: 9999;
+}
+.navigation-icon {
+  margin-left: auto;
+  display: flex;
+  align-items: end;
+  /* right: 0; */
+  /* margin-left: 5px; */
+
+
+  justify-content: flex-end; /* Align items to the right */
+
+  ;
+}
+
+.navigation-icon svg {
+  fill: #fff;
+  width: 24px;
+  cursor: pointer;
+  height: 24px;
+  margin-left: auto;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  right: 0;
+  justify-content: flex-end; /* Align items to the right */
+
+  position: relative;
+}
+
+.user-profile-img {
+  margin-right: 5px; /* Add margin to separate from the icon */
+  align-items: flex-end;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  /* margin: 5px; */
+}
+
+.user-profile-name {
+  font-size: .7rem;
+  display:flex;
+  order: 2;
+  font-weight: bold;
+  border-bottom: 1px solid #ccc; /* Add a bottom border */
+  margin: 2px;
+}
+.user-profile-email {
+  font-size: .7rem;
+  
+  width: 100%;
+  color: #333;
+  padding: 8px 16px;
+
+  font-weight: bold;
+  border-bottom: 1px solid #ccc; /* Add a bottom border */
+  
+}
+.heading
+{
+  align-self: center;
+  align-content: center;
+  z-index: 10;
+}
+.options-container {
+  position: absolute;
+  top: calc(100% + 15px); /* Adjusted top value */
+  right: 0;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  padding: 5px 0;
+}
+
+.options-wrapper {
+  display: flex;
+
+  align-items: center;
+  margin-left: 10px; /* Adjust as needed */
+}
+.options-container button {
+  display: block;
+  width: 100%;
+  padding: 8px 16px;
+  text-align: left;
+  border: none;
+  background-color: transparent;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
