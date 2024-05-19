@@ -44,7 +44,7 @@ window.dispatchEvent(new Event('titleChange'));
     if (groceryID) {
       fetchBids(groceryID);
     }
-  }, [groceryID]);
+  },[fetchBids] [groceryID]);
 
   const acceptBid = async (id) => {
     const url = `https://groceries-i18z.onrender.com/api/groceries/${groceryID}/accept-bid`;
