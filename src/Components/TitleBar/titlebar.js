@@ -31,7 +31,7 @@ const TitleBar = forwardRef((props, ref) => {
     navigate('/login');
     setTitle("Login")
     window.dispatchEvent(new Event('titleChange'));
-    window.location.reload();
+    // window.location.reload();
 
      // Redirect to login page
   };
