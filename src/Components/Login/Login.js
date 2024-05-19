@@ -90,7 +90,7 @@ const Login = ({ setUserState }) => {
             setUserProfile({ name, email, id });
             setLoggedIn(true);
             navigate("/all-grocery", { replace: true }); // Navigate after successful login
-            // window.location.reload(); 
+            window.location.reload(); 
           })
           .catch((error) => {
             setIsLoading(false); // Set loading state to false after error
