@@ -28,7 +28,7 @@ const TitleBar = forwardRef((props, ref) => {
       window.history.go(1);
     };
 
-    navigate('/login');
+    navigate('/');
     setTitle("Login")
     window.dispatchEvent(new Event('titleChange'));
     // window.location.reload();
