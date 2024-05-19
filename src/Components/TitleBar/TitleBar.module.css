@@ -73,6 +73,11 @@
   border-bottom: 1px solid #ccc; /* Add a bottom border */
   
 }
+.centered-text {
+  flex-grow: 1;
+  text-align: center;
+}
+
 .heading
 {
   align-self: center;

@@ -1,12 +1,9 @@
 /* AddGroceryPage.css */
 
-body {
-  background: #59ABE3;
-  margin: 0;
-}
 
 .container {
   max-width: 600px;
+  padding: 6%;
   margin: 20px auto; /* Center the container */
 }
 
@@ -70,7 +67,7 @@ button[type="submit"] {
   width: 100%;
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #007bff;
+  background-color: #404142;
   color: #fff;
   border: none;
   border-radius: 4px;

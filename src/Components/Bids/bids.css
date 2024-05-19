@@ -73,17 +73,22 @@ section{
     height: inherit;
     float: left;
   }
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust column size as needed */
+    gap: 20px; /* Adjust gap between grid items */
+  }
   
   .tile-info {
     height: inherit;
     padding: 1em;
-    margin-left: 15em; 
+    
   }
   
   /* These are optional changes I make to my css. */
   
   * {
-    margin: 0;
+    /* margin: 0; */
     padding: 0;
     box-sizing: border-box;
   }
@@ -95,7 +100,42 @@ section{
   
   /* You can ignore anything below this. It does not contribute to the codepen in anyway, It's just so I can center the codepen when it displays and make it look pretty :D */
   
- 
+  .popup {
+    position: fixed;
+    
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .popup-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+  }
+  
+  .popup-content p {
+    margin: 0 0 20px;
+  }
+  
+  .popup-content button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .popup-content button:hover {
+    background-color: #0056b3;
+  }
+  
 
 .card-profile .card-avatar {
     width: 130px;

@@ -2,19 +2,23 @@
 import { useState, useEffect } from "react"; 
 import axios from "axios";
 import { useNavigate, useLocation } from 'react-router-dom';
-import { getAuthToken } from "../../Constants/Constant";
-
+import { getAuthToken ,setTitle} from "../../Constants/Constant";
+import image1 from "../../Images/image1.png"
+import image2 from "../../Images/image3.png"
+import image3 from "../../Images/image4.png"
 // import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 const AddGroceryPage = () => {
   const [groceries, setGroceries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [expandedCard, setExpandedCard] = useState(null);
-  const locationn = useLocation();
   const navigate = useNavigate();
 
   // Add a default value for authToken if locationn.state is null or undefined
   const authToken = getAuthToken() || ''; 
+  setTitle("Groceries Listed by You")
+  
+  window.dispatchEvent(new Event('titleChange'));
 
   useEffect(() => {
     const fetchData = async () => {
@@ -77,7 +81,14 @@ const AddGroceryPage = () => {
     }
     return 'Invalid Date';
   };
+  const imageLinks = [
+    image1,image2,image3
+  ];
 
+  const getRandomImage = () => {
+    const randomIndex = Math.floor(Math.random() * imageLinks.length);
+    return imageLinks[randomIndex];
+  };
   const handleClick = (event, item) => {
     event.preventDefault();
     console.log('auth token', authToken)
@@ -125,13 +136,13 @@ const AddGroceryPage = () => {
           {groceries.map((item, index) => (
             <li key={index}>
               <a href="#" className="card" onClick={(event) => { toggleCard(index); handleClick(event, item) }}>
-                <img src="https://i.imgur.com/oYiTqum.jpg" className="card__image" alt="" />
+                <img src={getRandomImage()} className="card__image" alt="" />
                 <div className="card__overlay">
                   <div className="card__header">
                     <svg className="card__arc" xmlns="http://www.w3.org/2000/svg">
                       <path />
                     </svg>
-                    <img className="card__thumb" src="https://i.imgur.com/7D7I6dI.png" alt="" />
+                    
                     <div className="card__header-text">
                       <h3 className="card__title">{item.itemName}</h3>
                       <span className="card__min-price">Min Price: {item.minPrice}</span>
