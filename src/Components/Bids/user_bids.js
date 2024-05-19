@@ -78,10 +78,7 @@ const BidsPage = () => {
   const [bids, setBids] = useState(null);  
   const [error, setError] = useState(null); // State to hold error information
 
-  useEffect(() => {
-    fetchBids();
-  }, []);
-
+ 
   const fetchBids = async () => {
     setTitle("Your Bids")
 window.dispatchEvent(new Event('titleChange'));
@@ -110,6 +107,9 @@ window.dispatchEvent(new Event('titleChange'));
       console.error('Error fetching bids:', error.message);
     }
   };
+  useEffect(() => {
+    fetchBids();
+  }, [fetchBids]);
 
   if (error) {
     return <div>Error: {error}</div>; // Render error message if there's an error
@@ -127,7 +127,7 @@ window.dispatchEvent(new Event('titleChange'));
     <div className="abc grid-container">
     {bids.map((bid, index) => (
       <div key={index} class='tile'>
-        <img className='tile-img' />
+        <img className='tile-img' alt="" />
         <div className='tile-info'>
           <p>Amount: {bid.amount} | Bid Status: {bid.status} | Quantity: {bid.quantity}</p>
         </div>

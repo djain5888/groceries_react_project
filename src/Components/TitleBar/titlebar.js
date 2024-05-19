@@ -62,7 +62,7 @@ const TitleBar = forwardRef((props, ref) => {
     catch (error) {
         console.error('Error fetching user profile:', error);
     }
-}, [getUserProfile],getTitle(),location);
+},getTitle(),location);
 
 
   const toggleOptions = () => {
