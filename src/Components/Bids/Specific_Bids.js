@@ -14,11 +14,6 @@ const BidsPage = () => {
   const [popup, setPopup] = useState({ visible: false, message: '' });
   const groceryID = item?._id || '';
 
-  useEffect(() => {
-    if (groceryID) {
-      fetchBids(groceryID);
-    }
-  }, [groceryID]);
 
   const fetchBids = async (groceryID) => {
     setTitle("All Bids")
@@ -44,6 +39,12 @@ window.dispatchEvent(new Event('titleChange'));
       console.error('Error fetching bids:', error.message);
     }
   };
+  
+  useEffect(() => {
+    if (groceryID) {
+      fetchBids(groceryID);
+    }
+  }, [groceryID]);
 
   const acceptBid = async (id) => {
     const url = `https://groceries-i18z.onrender.com/api/groceries/${groceryID}/accept-bid`;

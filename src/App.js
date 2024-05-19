@@ -75,19 +75,19 @@
 
 // export default App;
 import "./App.css";
-import Profile from "./Components/Profile/Profile";
-import Login from "./Components/Login/Login";
+import Profile from "./Components/Profile/Profile.js";
+import Login from "./Components/Login/Login.js";
 import Layout from "./layout"; // Import your Layout component
-import Register from "./Components/Register/Register";
+import Register from "./Components/Register/Register.js";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from "react";
-import AddGroceryPage from "./Components/Grocery/add-grocery";
-import Userspecificgrocery from "./Components/Grocery/View_User_Grocery";
+import AddGroceryPage from "./Components/Grocery/add-grocery.js";
+import Userspecificgrocery from "./Components/Grocery/View_User_Grocery.js";
 import ShowAllBids from "./Components/Bids/Specific_Bids";
 import { UserProvider } from "./Components/UserContext.js";
-import AllGrocery from "./Components/Grocery/grocery";
-import UserBids from "./Components/Bids/user_bids";
-import TitleBar from "./Components/TitleBar/titlebar";
+import AllGrocery from "./Components/Grocery/grocery.js";
+import UserBids from "./Components/Bids/user_bids.js";
+import TitleBar from "./Components/TitleBar/titlebar.js";
 
 function App() {
   const [userstate, setUserState] = useState({});
@@ -105,7 +105,8 @@ function App() {
   return (
     <div className="App">
       <UserProvider value={{ userProfile, setUserProfile, token, setToken }}>
-        <Router>
+        <Router basename="/groceries_react_project">
+
           <Layout> {/* Wrap your routes with the Layout component */}
             <Routes>
               <Route

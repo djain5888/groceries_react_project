@@ -28,10 +28,10 @@ const TitleBar = forwardRef((props, ref) => {
       window.history.go(1);
     };
 
-    navigate('/login');
+    navigate('/');
     setTitle("Login")
     window.dispatchEvent(new Event('titleChange'));
-    window.location.reload();
+    // window.location.reload();
 
      // Redirect to login page
   };
@@ -62,7 +62,7 @@ const TitleBar = forwardRef((props, ref) => {
     catch (error) {
         console.error('Error fetching user profile:', error);
     }
-}, [getUserProfile],getTitle(),location);
+},getTitle(),location);
 
 
   const toggleOptions = () => {
