@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import axios from "axios";
 import { useNavigate ,useLocation} from 'react-router-dom';
 import './add-grocery.css'; // Import CSS file for popups
+import { getAuthToken,getUserProfile } from "../../Constants/Constant";
 
 const AddGroceryPage = () => {
-    const locationn = useLocation();
-    const authToken = locationn.state.authToken;
+    // const locationn = useLocation();
+    const authToken = getAuthToken();
+   
     console.log(authToken)
     const [itemName, setItemName] = useState("");
     const [quantity, setQuantity] = useState(0);
@@ -14,11 +16,19 @@ const AddGroceryPage = () => {
     const [minPrice, setMinPrice] = useState(0);
     const [sellerContact, setSellerContact] = useState("");
     const navigate = useNavigate();
+    useEffect(() => {
+        // Fetch the user profile and set the seller contact
+        const fetchUserProfile = async () => {
+            const userProfile = await getUserProfile();
+            setSellerContact(userProfile.email);
+        };fetchUserProfile();
+    }, []);
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(false);
-
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
+        
 
         try {
             const response = await axios.post(
@@ -42,6 +52,7 @@ const AddGroceryPage = () => {
 
             console.log("Grocery added successfully:", response.data);
             setSuccess(true);
+
             setTimeout(() => {
                 setSuccess(false);
                 navigate('/user-grocery', { state: { authToken } });
@@ -60,7 +71,7 @@ const AddGroceryPage = () => {
 
     return (
         <div className='container'>
-            <h1>Add Grocery</h1>
+            {/* <h1>Add Grocery</h1> */}
             <form className="form" onSubmit={handleSubmit}>
                 <div className="form-group"> {/* Add form-group class */}
 

@@ -4,7 +4,11 @@ import axios from "axios";
 import "./GroceriesList.css";
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../UserContext.js'; 
-import { getAuthToken } from "../../Constants/Constant";
+import { getAuthToken,setTitle } from "../../Constants/Constant";
+import image1 from "../../Images/image1.png"
+import image2 from "../../Images/image3.png"
+import image3 from "../../Images/image4.png"
+
 
 const GroceriesList = ({ token }) => {
   const [groceries, setGroceries] = useState([]);
@@ -17,6 +21,8 @@ const GroceriesList = ({ token }) => {
   const [bidAmount, setBidAmount] = useState(0);
   const [bidQuantity, setBidQuantity] = useState(0);
 
+  setTitle("All Groceries")
+  window.dispatchEvent(new Event('titleChange'));
   const navigate = useNavigate();
   console.log('in grocery',getAuthToken())
   
@@ -89,6 +95,14 @@ const GroceriesList = ({ token }) => {
       ;
     }
     return 'Invalid Date';
+  };
+  const imageLinks = [
+    image1,image2,image3
+  ];
+
+  const getRandomImage = () => {
+    const randomIndex = Math.floor(Math.random() * imageLinks.length);
+    return imageLinks[randomIndex];
   };
 
   const toggleCard = (index) => {
@@ -168,34 +182,32 @@ const GroceriesList = ({ token }) => {
       
 
       <ul className="grocerycards">
-        {groceries.map((item, index) => (
-          <li key={index}>
-            <a href="#" className="card" onClick={() => toggleCard(index)}>
-              <img src="https://i.imgur.com/oYiTqum.jpg" className="card__image" alt="" />
-              <div className="card__overlay">
-                <div className="card__header">
-                  <div className="card__header-text">
-                    <h3 className="card__title">{item.itemName}</h3>
-                    <span className="card__min-price">Min Price: {item.minPrice}</span>
-                  </div>
-                </div>
-                <div className="card__description">
-                  
-                  <div className="info">
-                    <span className="card__quantity">Quantity: {item.quantity}</span>
-                    <span className="card__expiration">Exp: {formatDate(item.expirationDate)}</span>
-                    <span className="No_of_bids">No. of Bids: {item.bids.length}</span>
-                  </div>
-                  <div className="button-container_info">
-                    <button className="button-6" onClick={() => handlePlaceBid(item)}>Place Bid</button>
-                  </div>
+      {groceries.map((item, index) => (
+        <li key={index}>
+          <a href="#" className="card" onClick={() => toggleCard(index)}>
+            <img src={getRandomImage()} className="card__image" alt="" />
+            <div className="card__overlay">
+              <div className="card__header">
+                <div className="card__header-text">
+                  <h3 className="card__title">{item.itemName}</h3>
+                  <span className="card__min-price">Min Price: {item.minPrice}</span>
                 </div>
               </div>
-            </a>
-          </li>
-        ))}
-      </ul>
-
+              <div className="card__description">
+                <div className="info">
+                  <span className="card__quantity">Quantity: {item.quantity}</span>
+                  <span className="card__expiration">Exp: {formatDate(item.expirationDate)}</span>
+                  <span className="No_of_bids">No. of Bids: {item.bids.length}</span>
+                </div>
+                <div className="button-container_info">
+                  <button className="button-6" onClick={() => handlePlaceBid(item)}>Place Bid</button>
+                </div>
+              </div>
+            </div>
+          </a>
+        </li>
+      ))}
+    </ul>
       {/* Bid Modal */}
       {bidModalOpen && (
         

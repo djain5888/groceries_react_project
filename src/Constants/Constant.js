@@ -10,6 +10,15 @@ export const setAuthToken = (token) => {
   localStorage.setItem("authToken", token);
 };
 
+export const getTitle = () => {
+  return localStorage.getItem("title");
+};
+
+
+// Function to set auth token in localStorage
+export const setTitle = (title) => {
+  localStorage.setItem("title", title);
+};
 // Function to remove auth token from localStorage
 export const removeAuthToken = () => {
   localStorage.removeItem("authToken");
@@ -30,4 +39,7 @@ export const setUserProfile = (newProfile) => {
 // Function to reset user profile in localStorage
 export const resetUserProfile = () => {
   localStorage.removeItem("userProfile");
+};
+export const resetTitle = () => {
+  localStorage.removeItem("title");
 };

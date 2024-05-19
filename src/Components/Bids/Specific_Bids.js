@@ -1,12 +1,17 @@
+
+
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import './bids.css'
-
+import './bids.css';
+import { setTitle } from "../../Constants/Constant";
+setTitle("All Bids")
+window.dispatchEvent(new Event('titleChange'));
 const BidsPage = () => {
   const location = useLocation();
   const authToken = location.state?.authToken || '';
   const item = location.state?.item || null;
-  const [bids, setBids] = useState(item?.bids || []);  
+  const [bids, setBids] = useState(item?.bids || []);
+  const [popup, setPopup] = useState({ visible: false, message: '' });
   const groceryID = item?._id || '';
 
   useEffect(() => {
@@ -16,6 +21,8 @@ const BidsPage = () => {
   }, [groceryID]);
 
   const fetchBids = async (groceryID) => {
+    setTitle("All Bids")
+window.dispatchEvent(new Event('titleChange'));
     try {
       const url = `https://groceries-i18z.onrender.com/api/groceries/${groceryID}/bids`;
       const response = await fetch(url, {
@@ -24,11 +31,13 @@ const BidsPage = () => {
           Authorization: `Bearer ${authToken}`,
         },
       });
-  
+
       if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Failed to fetch bids:', response.status, errorText);
         throw new Error('Failed to fetch bids');
       }
-  
+
       const data = await response.json();
       setBids(data.bids);
     } catch (error) {
@@ -50,17 +59,26 @@ const BidsPage = () => {
         body: body,
       });
 
+      const responseData = await response.json();
+
       if (!response.ok) {
-        throw new Error('Failed to accept bid');
+        console.error('Failed to accept bid:', response.status, responseData.message);
+        throw new Error(responseData.message || 'Failed to accept bid');
       }
 
       // Handle successful response
-      const data = await response.json();
-      console.log('Bid accepted:', data);
+      console.log('Bid accepted:', responseData);
+      setPopup({ visible: true, message: 'Bid accepted successfully!' });
       fetchBids(groceryID);
+
     } catch (error) {
       console.error('Error accepting bid:', error.message);
+      setPopup({ visible: true, message: `Error: ${error.message}` });
     }
+  };
+
+  const closePopup = () => {
+    setPopup({ visible: false, message: '' });
   };
 
   if (!item) {
@@ -74,8 +92,8 @@ const BidsPage = () => {
   return (
     <div className="abc">
       {bids.map((bid, index) => (
-        <div key={index} class='tile'>
-          <img className='tile-img' />
+        <div key={index} className='tile'>
+          <img className='tile-img' alt="" />
           <div className='tile-info'>
             <h4>Amount: {bid.amount} Bid Status: {bid.status}</h4>
             <p>Quantity: {bid.quantity}</p>
@@ -84,6 +102,14 @@ const BidsPage = () => {
           </div>
         </div>
       ))}
+      {popup.visible && (
+        <div className="popup">
+          <div className="popup-content">
+            <p>{popup.message}</p>
+            <button onClick={closePopup}>Close</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
